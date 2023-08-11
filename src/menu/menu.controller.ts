@@ -11,7 +11,8 @@ import { menu } from './schema/menu';
 export class MenuController {
   constructor(private readonly menuService: MenuService) {}
   
-  @Post()
+  
+  @Post(':restaurantId')
   @ApiOperation({summary: 'post menu details'})
   @ApiBody({
     schema:{
@@ -28,7 +29,12 @@ export class MenuController {
         deals:{
           type:'string',
           example: '50%', 
+        },
+        restaurantId:{
+          type:'string',
+          example: '50%', 
         }
+
       }
     }
   })
@@ -36,9 +42,13 @@ export class MenuController {
     status: 201, 
     description: 'all data list'
   })
-  create(@Body() createMenuDto: CreateMenuDto) {
-    return this.menuService.create(createMenuDto);
-  }
+  @Post(':restaurantId')
+create(@Param('restaurantId') restaurantId: string, @Body() createMenuDto: CreateMenuDto) {
+  return this.menuService.create(createMenuDto, restaurantId);
+}
+
+
+
 
   @Get('list')
   @ApiOperation({summary: 'get menu details'})

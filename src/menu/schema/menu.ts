@@ -1,5 +1,6 @@
 import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
-import { Document } from "mongoose";
+import mongoose, { Document } from "mongoose";
+import { Restaurant } from "src/restaurant/schema/schema";
 
 
 
@@ -12,7 +13,8 @@ export class menu{
     price: string;
     @Prop()
     deals: String;
-
+    @Prop()
+    restaurantId: string
 }
 export const menuSchema = SchemaFactory.createForClass(menu)
 

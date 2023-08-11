@@ -7,6 +7,7 @@ import { UserModule } from './user/user.module';
 import { ApiTags } from '@nestjs/swagger';
 import { MenuModule } from './menu/menu.module';
 import { OrdersModule } from './orders/orders.module';
+import { RestaurantModule } from './restaurant/restaurant.module';
 
 @ApiTags('User')
 @Module({
@@ -21,7 +22,8 @@ import { OrdersModule } from './orders/orders.module';
   }),
    UserModule,
    MenuModule,
-   OrdersModule,],
+   OrdersModule,
+   RestaurantModule,],
   
   controllers: [AppController],
   providers: [AppService],

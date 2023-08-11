@@ -25,7 +25,7 @@ export class UserController {
         },
         email:{
           type:'string',
-          example: 'sdsfd@.com', 
+          example: 'someone@.com', 
         },
         password:{
           type:'string',

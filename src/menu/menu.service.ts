@@ -4,6 +4,7 @@ import { UpdateMenuDto } from './dto/update-menu.dto';
 import { InjectModel } from '@nestjs/mongoose';
 import { MenuDocument, menu } from './schema/menu';
 import { Model } from 'mongoose';
+import { Restaurant } from 'src/restaurant/schema/schema';
 
 
 @Injectable()
@@ -13,12 +14,21 @@ export class MenuService {
   ){
  
    }
+     
+   async createMenu(createMenuDto: CreateMenuDto, restaurantId: string): Promise<menu> {
+    const menu = new this.menuModel({
+      ...createMenuDto,
+      restaurant: restaurantId,
+    });
 
-   create(createMenuDto: CreateMenuDto) :Promise<menu>{
+    return  menu.save();
+  }
+   create(createMenuDto: CreateMenuDto,restaurantId) :Promise<menu>{
     const model = new this.menuModel;
     model.type=createMenuDto.type;
     model.price=createMenuDto.price;
     model.deals=createMenuDto.deals;
+    model.restaurantId=createMenuDto.restaurantId
     
     return  model.save();
    
